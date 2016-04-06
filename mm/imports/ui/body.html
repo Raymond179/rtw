@@ -1,0 +1,28 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>MM</h1>
+      
+      {{> loginButtons}}
+
+      {{#if currentUser}}
+      <h2></h2>
+      {{/if}}
+    </header>
+
+    <ul>
+      <h2>Users</h2>
+      {{#each users}}
+        {{> user}}
+      {{/each}}
+    </ul>
+
+    <ul>
+      <h2>Rooms</h2>
+      {{#each rooms}}
+        {{> room}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+ 
