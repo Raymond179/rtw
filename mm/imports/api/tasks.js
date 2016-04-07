@@ -21,7 +21,20 @@ Meteor.methods({
     Rooms.insert({
       users: [userID, Meteor.userId()],
       createdAt: new Date(),
-      opponent: username
+      opponent: username,
+      rows: [
+        {
+          try: 'YELLOW',
+          review: 'white'
+        },
+        {
+          try: 'blue',
+          review: 'black'
+        }
+      ]
     });
+  },
+  'rooms.remove'() {
+    Rooms.remove({});
   }
 });
