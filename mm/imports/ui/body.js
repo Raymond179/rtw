@@ -26,8 +26,25 @@ Template.body.helpers({
   },
   rows() {
     if (Session.get('roomID') != null) {
+      // Find the room with the current roomID
       var currentRoom = Rooms.findOne({_id: Session.get('roomID')});
-      return currentRoom.rows;
+      return currentRoom.game.rows;
+    }
+  },
+  set() {
+    if (Session.get('roomID') != null) {
+      var currentRoom = Rooms.findOne({_id: Session.get('roomID')});
+      // Return the set
+      return currentRoom.game.set;
+    }
+  },
+  'ifMaster': function() {
+    if (Session.get('roomID') != null) {
+      var currentRoom = Rooms.findOne({_id: Session.get('roomID')});
+      // If current user is the master
+      if (currentRoom.game.players.master == Meteor.userId()) {
+        return true;
+      }
     }
   }
 });
@@ -38,7 +55,7 @@ Template.body.events({
     if (res) {
       Session.set('roomID', res._id);
     } else {
-      var newRoom = Meteor.call('rooms.insert', this._id, this.username);
+      var newRoom = Meteor.call('rooms.insert', this._id);
       Session.set('roomID', newRoom);
     }
   },

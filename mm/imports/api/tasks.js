@@ -17,21 +17,27 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'rooms.insert'(userID, username) {
+  'rooms.insert'(userID) {
     Rooms.insert({
       users: [userID, Meteor.userId()],
       createdAt: new Date(),
-      opponent: username,
-      rows: [
-        {
-          try: 'YELLOW',
-          review: 'white'
+      game: { 
+        players: {
+          master: Meteor.userId(),
+          mind: userID
         },
-        {
-          try: 'blue',
-          review: 'black'
-        }
-      ]
+        set: ['red', 'blue', 'green', 'yellow'],
+        rows: [
+          {
+            try: ['blue', 'yellow', 'green', 'blue'],
+            review: ['white']
+          },
+          {
+            try: ['green', 'blue', 'green', 'yellow'],
+            review: ['black']
+          }
+        ]
+      }
     });
   },
   'rooms.remove'() {

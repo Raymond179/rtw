@@ -1,39 +1,68 @@
 <body>
-  <div class="container">
-    <aside>
-      <header>
-        <h1>MasterMind</h1>
-        
-        {{> loginButtons}}
-      </header>
-      <!-- If user is logged in -->
-      {{#if currentUser}}
-        <ul>
-          <h2>Users</h2>
-          {{#each users}}
-            {{> user}}
-          {{/each}}
-        </ul>
+    <div class="container">
+        <aside>
+            <header>
+                <h1>MasterMind</h1>
 
-        <ul>
-          <h2>Games</h2>
-          {{#each rooms}}
-            {{> room}}
-          {{/each}}
-        </ul>
-      {{/if}}
-    </aside>
+                {{> loginButtons}}
+            </header>
+            <!-- If user is logged in -->
+            {{#if currentUser}}
+                <ul>
+                    <h2>Users</h2>
+                    {{#each users}}
+                        {{> user}}
+                    {{/each}}
+                </ul>
 
-    <main>
+                <ul>
+                    <h2>Games</h2>
+                    {{#each rooms}}
+                        {{> room}}
+                    {{/each}}
+                </ul>
+            {{/if}}
+        </aside>
 
-      {{#each rows}}
-        <span>{{try}}</span>
-        <span>{{review}}</span>
-      {{/each}}
+        <main>
+            <!-- If user is logged in -->
+            {{#if currentUser}}
+                <ul class="rows">
+                    {{#each rows}}
+                        <li class="row">
+                            <div class="pins">
+                                <span class="pin {{try.[0]}}"></span>
+                                <span class="pin {{try.[1]}}"></span>
+                                <span class="pin {{try.[2]}}"></span>
+                                <span class="pin {{try.[3]}}"></span>
+                            </div>
+                            <div class="dots">
+                                <div>
+                                    <span class="dot {{review.[0]}}"></span>
+                                    <span class="dot {{review.[1]}}"></span>
+                                </div>
+                                <div>
+                                    <span class="dot {{review.[2]}}"></span>
+                                    <span class="dot {{review.[3]}}"></span>
+                                </div>
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
 
-    </main>
-
-    
-  </div>
+                {{#if ifMaster}}
+                    <section class="master">
+                        <h3>Your set</h3>
+                        {{#each set}}
+                            <span class="pin {{this}}"></span>
+                        {{/each}}
+                    </section>                   
+                {{/if}}
+            {{else}}
+                <h1>Welcome to Mastermind</h1>
+                <p>Login or signup to play</p>
+            {{/if}}
+        </main>
+    </div>
 </body>
  

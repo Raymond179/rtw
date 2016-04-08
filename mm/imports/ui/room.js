@@ -22,7 +22,7 @@ Template.room.helpers({
     		var user = Meteor.users.findOne({_id: users[0]});
         	var username = user.username;
         	// Push the username to opponents array
-    		rooms[i].realOpponent = username;
+    		rooms[i].opponent = username;
 		}
 		return rooms;
 	}
