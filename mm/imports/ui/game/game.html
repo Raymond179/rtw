@@ -1,0 +1,106 @@
+<template name="game">
+    <section class="game">
+        <!-- If user is logged in -->
+        {{#if currentUser}}
+            <div class="game-header">
+                {{#if ifTurn}}
+                    <h2>Your turn</h2>
+                {{/if}}
+            </div>
+
+            <div class="game-body">
+                <section class="board">
+                    <div class="inner-board">
+                        <ul class="rows">
+                            {{#each rows}}
+                                <li class="row">
+                                    <div class="pins">
+                                        <span class="pin {{try.[0]}}"></span>
+                                        <span class="pin {{try.[1]}}"></span>
+                                        <span class="pin {{try.[2]}}"></span>
+                                        <span class="pin {{try.[3]}}"></span>
+                                    </div>
+                                    {{#if review.[0].length}}
+                                        <div class="dots">
+                                            <div>
+                                                <span class="dot {{review.[0]}}"></span>
+                                                <span class="dot {{review.[1]}}"></span>
+                                            </div>
+                                            <div>
+                                                <span class="dot {{review.[2]}}"></span>
+                                                <span class="dot {{review.[3]}}"></span>
+                                            </div>
+                                        </div>
+                                    {{else}}
+                                        <div class="dots dots-review">
+                                            <div>
+                                                <span class="dot empty-dot nothing"></span>
+                                                <span class="dot empty-dot nothing"></span>
+                                            </div>
+                                            <div>
+                                                <span class="dot empty-dot nothing"></span>
+                                                <span class="dot empty-dot nothing"></span>
+                                            </div>
+                                        </div>
+                                    {{/if}}
+                                </li>
+                            {{/each}}
+                            {{#unless ifMaster}}
+                                <li class="row">
+                                    <div class="pins">
+                                        <span class="pin empty-pin"></span>
+                                        <span class="pin empty-pin"></span>
+                                        <span class="pin empty-pin"></span>
+                                        <span class="pin empty-pin"></span>
+                                    </div>
+                                </li>
+                            {{/unless}}
+                        </ul>
+
+                        {{#if ifMaster}}
+                            <section class="set">
+                                <h3>Your set</h3>
+                                {{#if set.length}}
+                                    {{#each set}}
+                                        <span class="pin {{this}}"></span>
+                                    {{/each}}
+                                {{else}}
+                                    <span class="pin empty-pin"></span>
+                                    <span class="pin empty-pin"></span>
+                                    <span class="pin empty-pin"></span>
+                                    <span class="pin empty-pin"></span>
+                                {{/if}}
+                            </section>                   
+                        {{/if}}
+                    </div>
+                    {{#if ifMaster}}
+                        {{#if set.length}}
+                            {{#if ifTurn}}
+                                <button class="submit-master"> Submit </button>
+                            {{/if}}
+                        {{else}}
+                            {{#if ifTurn}}
+                                <button class="submit-set"> Submit </button>
+                            {{/if}}
+                        {{/if}}
+                    {{else}}
+                        {{#if ifTurn}}
+                        <button class="submit-mind"> Submit </button>
+                        {{/if}}
+                    {{/if}}
+                </section>
+                {{#if ifMaster}}
+                    {{#if set.length}}
+                        {{> masterhelper}}
+                    {{else}}
+                        {{> mindhelper}}
+                    {{/if}}
+                {{else}}
+                    {{> mindhelper}}
+                {{/if}}
+            </div>
+            
+                       
+        {{/if}}
+    </section> 
+</template>

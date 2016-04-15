@@ -19,31 +19,39 @@ body {
  
   font-size: 14px;
 }
+
+a {
+  text-decoration: none !important;
+}
  
 .container {
   display: flex;
+  display: webkit-flex;
   flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+
   margin: auto;
   height: 100%;
 }
 
 main {
   flex: 70%;
+  -webkit-flex: 70%;
   height: 100%;
-  padding: 10px;
 }
 
 aside {
   flex: 30%;
+  -webkit-flex: 30%;
   background: #1C2222;
   height: 100%;
   color:white;
-  padding:10px;
 }
  
 header {
   padding: 20px 15px 15px 15px;
   position: relative;
+  text-align: center;
 }
  
 #login-buttons {
@@ -54,14 +62,41 @@ h1 {
   font-size: 2em;
   margin: 0;
   margin-bottom: 10px;
-  display: inline-block;
-  margin-right: 1em;
+  color: white;
+  font-family: 'PT Sans Narrow';
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+h2 {
+  font-size: 1.7em;
+  font-family: 'PT Sans Narrow';
+  font-weight: normal;
+  letter-spacing: 3px;
+}
+
+.list-header {
+  padding: 0px 15px 15px 15px; 
 }
  
 form {
   margin-top: 10px;
   margin-bottom: -10px;
   position: relative;
+}
+
+.search-users {
+  padding: 20px 15px 15px 15px;
+}
+
+.search-users input {
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #3B8686;
+  border-radius: 0;
+  height: 40px;
+  width: 100%;
 }
 
 ul {
@@ -75,22 +110,64 @@ li {
 
 aside li {
   width: 100%;
-  border-bottom: 1px solid white;
   padding: 20px;
   cursor: pointer;
+  color: white;
 }
 
-.master {
-  margin-top: 20px;
+.active-room {
+  background: #3B8686;
+}
+
+/* BOARD */
+.game {
+  height: 100%;
+}
+
+.game-header {
+  background: #3B8686;
+  width: 70%;
+  height: 50px;
+  position: absolute;
+}
+
+.game-header h2 {
+  margin-top: 0;
+  text-align: center;
+  color: white;
+}
+
+.game-body {
+  display: flex;
+  display: -webkit-flex;
+  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  height: 100%;
+}
+
+.set {
+  padding-top: 20px;
+  overflow: hidden;
+}
+
+.rows {
+  overflow: hidden;
 }
 
 .row {
   width: 100%;
   clear: both;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid #B9B9B9;
 }
 
 .pins {
   float: left;
+  margin-top: 2px;
+  padding-right: 10px;
+  border-right: 1px solid #B9B9B9;
 }
 
 .dots {
@@ -99,36 +176,55 @@ aside li {
 }
 
 .pin {
-  width:20px;
-  height: 20px;
+  width:30px;
+  height: 30px;
   border-radius: 50%;
   display: block;
   float: left;
-  border: 1px solid black;
+  margin: 4px;
 }
 
 .dot {
-  width:10px;
-  height: 10px;
+  width:13px;
+  height: 13px;
   border-radius: 50%;
   display: block;
   float: left;
+  margin: 3px;
+}
+
+.empty-dot {
+  border: 1px solid #4E4E4E;
+}
+
+.dots-review {
+  background: #D8D8D7;
+  padding: 5px;
+  margin-left: 16px;
 }
 
 .red {
-  background: red;
+  background: #E04937;
 }
 
 .blue {
-  background: blue;
+  background: #3082C4;
 }
 
 .green {
-  background: green;
+  background: #00A784;
 }
 
 .yellow {
-  background: yellow;
+  background: #F6DA64;
+}
+
+.purple {
+  background: #9265AA;
+}
+
+.orange {
+  background: #F9A027;
 }
 
 .black {
@@ -137,5 +233,49 @@ aside li {
 
 .white {
   background: white;
+  border: 1px solid #4E4E4E;
+}
+
+.nothing {
+
+}
+
+.board {
+  flex: 50%;
+  -webkit-flex: 50%;
+  height: 100%;
+  padding-top: 50px;
+}
+
+.inner-board {
+  width: 270px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.master-helper,
+.mind-helper {
+  flex: 50%;
+  -webkit-flex: 50%;
+  height: 100%;
+  padding-top: 50px;
+  background: #D8D8D7;
+}
+
+.selection {
+  overflow: hidden;
+}
+
+.selected {
+  width: 40px;
+  height: 40px;
+  display: block;
   border: 1px solid black;
+  margin-top: 10px;
+}
+
+.submit-mind,
+.submit-master {
+  clear: both;
+  display: block;
 }

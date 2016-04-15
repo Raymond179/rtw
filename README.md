@@ -27,3 +27,18 @@ Met behulp van Meteor wil ik een user account system maken. Ingelogde spelers kr
 - Chatten met de tegenstander
 - Meerdere users in één game
 - Zet het aantal kleuren (difficulty)
+
+
+## Structuur
+- client
+	- main.css
+	- main.html
+	- main.js
+- imports
+	- api
+		- meteor methods
+	- ui
+- server
+	- main.js
+
+Ik zet al mijn bestanden in de map imports. Dus niet in de client of de server map. Dit heb ik gedaan zodat ik de bestanden makkelijk in de server of de client kan importeren. De 'main bestanden' in de server en client map laden als eerst. Door bestanden hierin te importeren, krijg je een goed overzicht van welke bestanden in welke volgorde worden inladen. In de imports map verdeel ik de app in de ui en de api.

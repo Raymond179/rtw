@@ -21,24 +21,65 @@ Meteor.methods({
     Rooms.insert({
       users: [userID, Meteor.userId()],
       createdAt: new Date(),
-      game: { 
+      game: [{
+        currentGame: true,
         players: {
           master: Meteor.userId(),
-          mind: userID
+          mind: userID,
+          turn: Meteor.userId()
         },
-        set: ['red', 'blue', 'green', 'yellow'],
-        rows: [
-          {
-            try: ['blue', 'yellow', 'green', 'blue'],
-            review: ['white']
-          },
-          {
-            try: ['green', 'blue', 'green', 'yellow'],
-            review: ['black']
-          }
-        ]
-      }
+        set: [],
+        rows: []
+      }]
     });
+  },
+  'rooms.addTry'(roomID, attempt) {
+    Rooms.update({_id: roomID, "game.currentGame": true}, 
+      {$push: {
+        "game.$.rows": { try: attempt }
+      }
+    })
+  },
+  'rooms.addReview'(roomID, attempt, modifier) {
+    Rooms.upsert({_id: roomID, "game.currentGame": true}, modifier)
+  },
+  'rooms.addSet'(roomID, attempt) {
+    Rooms.update({_id: roomID, "game.currentGame": true}, 
+      {$set: {
+        "game.$.set": attempt
+      }
+    })
+  },
+  'rooms.updateTurn'(roomID, userID) {
+    Rooms.update({_id: roomID, "game.currentGame": true}, 
+      {$set: {
+        "game.$.players.turn": userID
+      }
+    })
+  },
+  'rooms.removeCurrentGame'(roomID) {
+    Rooms.update({_id: roomID, "game.currentGame": true}, 
+      {$set: {
+        "game.$.currentGame": false
+      }
+    })
+  },
+  'rooms.addGame'(roomID, userID) {
+    Rooms.update({_id: roomID}, 
+      {$push: {
+        "game": {
+          currentGame: true,
+          players: {
+            master: userID,
+            mind: Meteor.userId(),
+            turn: userID
+          },
+          set: [],
+          rows: []
+        }
+
+      }
+    })
   },
   'rooms.remove'() {
     Rooms.remove({});

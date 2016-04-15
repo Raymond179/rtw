@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session';
  
 import { Rooms } from '../api/tasks.js';
  
@@ -25,5 +26,19 @@ Template.room.helpers({
     		rooms[i].opponent = username;
 		}
 		return rooms;
+	},
+	'getOpponentId':function(currentRoom){
+		// Find the right room
+		var rooms = Rooms.findOne({_id: currentRoom});
+		// Get user array which contains two values
+		var users = rooms.users;
+		// Delete the value of the current user so you know who the opponent is
+		var index = users.indexOf(Meteor.userId());
+		users.splice(index, 1);
+
+		return users[0];
+	},
+	'ifActive':function(_id) {
+		return this._id === Session.get('roomID');
 	}
 });

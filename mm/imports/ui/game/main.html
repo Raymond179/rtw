@@ -1,6 +1,4 @@
 <template name="main">
-
-<body>
     <div class="container">
         <aside>
             <header>
@@ -11,16 +9,14 @@
             <!-- If user is logged in -->
             {{#if currentUser}}
                 <ul>
-                    <div class="search-users">
-                        <input type="text" placeholder="Search users">
-                    </div>
+                    <h2>Users</h2>
                     {{#each users}}
                         {{> user}}
                     {{/each}}
                 </ul>
 
-                <ul class="games">
-                    <h2 class="list-header">Games</h2>
+                <ul>
+                    <h2>Games</h2>
                     {{#each rooms}}
                         {{> room}}
                     {{/each}}
@@ -29,10 +25,7 @@
         </aside>
 
         <main>
-            {{> yield}}
+        	{{> yield}}
         </main>
     </div>
-</body>
-
 </template>
-
