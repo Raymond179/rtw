@@ -9,7 +9,15 @@ Router.route('/', {
 	data: function() {
 		Session.set('roomID', null);
 	}
-})
+});
+
+Router.route('/login', {
+	template: 'login'
+});
+
+Router.route('/register', {
+	template: 'register'
+});
 
 Router.route('/game/:_id', {
 	template: 'game',

@@ -1,8 +1,13 @@
 <template name="nogame">
 	{{#if currentUser}}
-		<h1> No game selected </h1>
+		<div class="header">
+        	<h2>No game selected</h2>
+       		<p>Choose a game from the menu</p>
+        </div>
 	{{else}}
-		<h1>Welcome to Mastermind</h1>
-		<p>Login or signup to play</p>
+		<div class="header">
+			<h2>Welcome to Mastermind</h2>
+			<p>Login or signup to play</p>
+		</div>
 	{{/if}}
 </template>

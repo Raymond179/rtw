@@ -6,13 +6,17 @@
             <header>
                 <a href="/"><h1>MasterMind</h1></a>
 
-                {{> loginButtons}}
+                {{#if currentUser}}
+                    <a href="#" class="logout">{{getCurrentUser}}</a>
+                {{/if}}
             </header>
             <!-- If user is logged in -->
             {{#if currentUser}}
                 <ul>
                     <div class="search-users">
-                        <input type="text" placeholder="Search users">
+                        <form class="submit-users">
+                            <input type="text" name="text" placeholder="Search users">
+                        </form>
                     </div>
                     {{#each users}}
                         {{> user}}
@@ -25,10 +29,21 @@
                         {{> room}}
                     {{/each}}
                 </ul>
+            {{else}}
+                <ul class="no-user-list">
+                    <a href="/login"><li class="{{#if lrActive '/login'}}lr-active{{/if}}">Login</li></a>
+                    <a href="/register"><li class="{{#if lrActive '/register'}}lr-active{{/if}}">Register</li></a>
+                </ul>
             {{/if}}
         </aside>
 
         <main>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="overlay"></div>
             {{> yield}}
         </main>
     </div>

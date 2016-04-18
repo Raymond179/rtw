@@ -22,7 +22,7 @@ Met behulp van Meteor wil ik een user account system maken. Ingelogde spelers kr
 - Zoek online users
 - Meerdere games
 - Scoreboard/Highscore
-- Drag/drop
+- Drag/drop colors
 - Award system
 - Chatten met de tegenstander
 - Meerdere users in één game
@@ -42,3 +42,15 @@ Met behulp van Meteor wil ik een user account system maken. Ingelogde spelers kr
 	- main.js
 
 Ik zet al mijn bestanden in de map imports. Dus niet in de client of de server map. Dit heb ik gedaan zodat ik de bestanden makkelijk in de server of de client kan importeren. De 'main bestanden' in de server en client map laden als eerst. Door bestanden hierin te importeren, krijg je een goed overzicht van welke bestanden in welke volgorde worden inladen. In de imports map verdeel ik de app in de ui en de api.
+
+## Testing
+Bij het testen ging ik er vanuit dat de gebruiker de spelregels kende. Het volgende kwam naar voren:
+
+- De kleuren waren niet onderscheidbaar genoeg. Blauw leek te veel op paars.
+- De witte kleur bij het beoordelen was bijna niet te zien.
+- De beoordeel pins waren te klein.
+- De gebruiker kon gemakkelijk andere users vinden en een game starten.
+- De gebruiker wist tijdens een potje mastermind niet wat de status was en wat ze moesten doen.
+- De gebruiker wist niet wie er aan de beurt was.
+- Wanneer een combinatie goed geraden was, kwam er geen duidelijke bevestiging.
+

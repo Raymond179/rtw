@@ -13,6 +13,8 @@ import './game/nogame.html';
 import './game/master-helper.html';
 import './game/mind-helper.html';
 import './router.js';
+import './login.js';
+import './register.js';
 
 Template.main.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -22,12 +24,21 @@ Template.main.onCreated(function bodyOnCreated() {
 
 Template.main.helpers({
   users() {
-    return Meteor.users.find({_id:{$ne: Meteor.userId()}});
+    var user = Session.get('foundUser');
+    return Meteor.users.find({username: user});
   },
   rooms() {
     console.log(Rooms.find({}).fetch())
     var opponents = Template.room.__helpers.get('getOpponent')(Meteor.userId());
     return opponents;
+  },
+  'getCurrentUser': function() {
+    return Meteor.user().username;
+  },
+  'lrActive': function(value) {
+    var url = window.location.href;
+    var current = Router.current().route.path();
+    return current === value;
   }
 });
 
@@ -62,11 +73,17 @@ Template.game.helpers({
         return true;
       }
     }
+  },
+  'returnOpponent': function() {
+    var opponent = Template.room.__helpers.get('getOpponentId')(Session.get('roomID'));
+    var user = Meteor.users.findOne({_id: opponent});
+    return user.username;
   }
 });
 
 Template.main.events({
   'click .user'(event) {
+    Session.set('foundUser', null);
     // Meteor.call('rooms.remove')
     var res = Rooms.findOne({users: {$all: [this._id, Meteor.userId()]}})
     if (res) {
@@ -76,7 +93,6 @@ Template.main.events({
       var newRoom = Rooms.findOne({users: {$all: [this._id, Meteor.userId()]}})
       Router.go('/game/' + newRoom._id);
     }
-
   },
   'click .room'(event) {
     Session.set('roomID', this._id);
@@ -85,6 +101,35 @@ Template.main.events({
     var color = event.currentTarget.getAttribute('color');
     var selected = document.querySelectorAll('.selected')[0];
     selected.className = 'selected '+ color;
+  },
+  'click .hamburger'(event) {
+    var menu = document.getElementsByTagName('aside')[0];
+    var overlay = document.querySelector('.overlay');
+
+    menu.className = 'menu-open';
+    overlay.className = 'overlay-active';
+  },
+  'click .overlay-active'(event) {
+    var menu = document.getElementsByTagName('aside')[0];
+    var overlay = document.querySelector('.overlay-active');
+
+    menu.className = '';
+    overlay.className = 'overlay';
+  },
+  'submit .submit-users'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+    var user = event.target.text.value;
+ 
+    Session.set('foundUser', user);
+  },
+  'click .cross'(event) {
+    Meteor.call('rooms.removeRoom', this._id);
+    Router.go('/');
+  },
+  'click .logout': function(event) {
+    event.preventDefault();
+    Meteor.logout();
   }
 });
 

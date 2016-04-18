@@ -1,3 +1,10 @@
 <template name="room">
-	<a href="/game/{{_id}}"><li class="room {{#if ifActive}}active-room{{/if}}">{{ opponent }}</li></a>
+	
+	<li class="room {{#if ifActive}}active-room{{/if}}"> 
+		<a href="/game/{{_id}}">
+			{{ opponent }}
+		</a>
+		<span class="cross"></span>
+	</li>
+	
 </template>

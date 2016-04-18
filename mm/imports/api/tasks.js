@@ -81,6 +81,9 @@ Meteor.methods({
       }
     })
   },
+  'rooms.removeRoom'(roomID) {
+    Rooms.remove({_id: roomID});
+  },
   'rooms.remove'() {
     Rooms.remove({});
   }

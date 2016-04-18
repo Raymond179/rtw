@@ -3,9 +3,34 @@
         <!-- If user is logged in -->
         {{#if currentUser}}
             <div class="game-header">
+                <h2>Game with <span>{{returnOpponent}}</span></h2>
                 {{#if ifTurn}}
-                    <h2>Your turn</h2>
+                    <p>Your turn</p>
+                {{else}}
+                    <p>{{returnOpponent}}'s turn</p>
                 {{/if}}
+
+
+                <div class="wizard">
+                    {{#if ifTurn}}
+                        {{#if ifMaster}}
+                            {{#if set.length}}
+                                <p>Review the combination</p>
+                            {{else}}
+                                <p>Set your combination</p>
+                            {{/if}}
+                        {{else}}
+                            <p>Fill in the pins to take a guess</p>
+                        {{/if}}
+                    {{else}}
+                        {{#if ifMaster}}
+                            <p>Wait for opponent to set</p>
+                        {{else}}
+                            <p>Wait for opponent to review your set</p>
+                        {{/if}}
+                    {{/if}}
+                    
+                </div>
             </div>
 
             <div class="game-body">
@@ -59,7 +84,7 @@
 
                         {{#if ifMaster}}
                             <section class="set">
-                                <h3>Your set</h3>
+                                <p>Your combination</p>
                                 {{#if set.length}}
                                     {{#each set}}
                                         <span class="pin {{this}}"></span>
@@ -76,16 +101,16 @@
                     {{#if ifMaster}}
                         {{#if set.length}}
                             {{#if ifTurn}}
-                                <button class="submit-master"> Submit </button>
+                                <button  class="button submit-master"> Submit </button>
                             {{/if}}
                         {{else}}
                             {{#if ifTurn}}
-                                <button class="submit-set"> Submit </button>
+                                <button class="button submit-set"> Submit </button>
                             {{/if}}
                         {{/if}}
                     {{else}}
                         {{#if ifTurn}}
-                        <button class="submit-mind"> Submit </button>
+                        <button class="button submit-mind"> Submit </button>
                         {{/if}}
                     {{/if}}
                 </section>
