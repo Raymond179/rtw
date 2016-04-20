@@ -54,3 +54,28 @@ Bij het testen ging ik er vanuit dat de gebruiker de spelregels kende. Het volge
 - De gebruiker wist niet wie er aan de beurt was.
 - Wanneer een combinatie goed geraden was, kwam er geen duidelijke bevestiging.
 
+## MongoDB structure
+
+###### Rooms
+
+Rooms: {
+	users: [userID, Meteor.userId()],
+	createdAt: new Date(),
+	game: [{
+		currentGame: true,
+		players: {
+		  master: Meteor.userId(),
+		  mind: userID,
+		  turn: Meteor.userId()
+		},
+		set: ['blue', 'green', 'orange', 'yellow'],
+		rows: [
+			{
+				try: ['green', 'blue', 'blue', 'yellow'],
+				review: ['black', 'black', 'white', 'nothing']
+			}
+		]
+	}]
+}
+
+	

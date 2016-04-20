@@ -19,6 +19,10 @@ Router.route('/register', {
 	template: 'register'
 });
 
+Router.route('/highscore', {
+	template: 'highscore'
+});
+
 Router.route('/game/:_id', {
 	template: 'game',
     data: function(){

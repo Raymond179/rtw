@@ -1,0 +1,38 @@
+<template name="highscore">
+	<div class="highscore">
+		<div class="header">
+			<h2> Highscore </h2>
+			<p>Who's the best?</p>
+		</div>
+
+		<div class="highscore-users">
+			<ul>
+				{{#each rooms}}
+                    <li class="highscore-user">{{opponent}}</li>
+                {{/each}}
+			</ul>
+		</div>
+
+		<div class="table">
+			<table>
+				<tr class="border-bottom">
+					<td></td>
+					<td>You</td>
+					<td>{{highscore.opponent}}</td> 
+				</tr>
+				<tr>
+					<th>Total tries</th>
+					<td>{{highscore.youTries}}</td> 
+					<td>{{highscore.opponentTries}}</td>
+				</tr>
+				<tr>
+					<th>Total games</th>
+					<td>{{highscore.youGames}}</td> 
+					<td>{{highscore.opponentGames}}</td>
+				</tr>
+			</table>
+		</div>
+
+		
+	</div>
+</template>

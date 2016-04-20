@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
  
-export const Tasks = new Mongo.Collection('tasks');
 export const Rooms = new Mongo.Collection('rooms');
 
 if (Meteor.isServer) {
@@ -70,9 +69,9 @@ Meteor.methods({
         "game": {
           currentGame: true,
           players: {
-            master: userID,
-            mind: Meteor.userId(),
-            turn: userID
+            master: Meteor.userId(),
+            mind: userID,
+            turn: Meteor.userId()
           },
           set: [],
           rows: []

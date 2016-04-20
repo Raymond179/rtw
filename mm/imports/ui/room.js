@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
  
-import { Rooms } from '../api/tasks.js';
+import { Rooms } from '../api/server.js';
  
 import './room.html';
 
@@ -40,5 +40,11 @@ Template.room.helpers({
 	},
 	'ifActive':function(_id) {
 		return this._id === Session.get('roomID');
+	},
+	'ifTurn': function() {
+		var currentRoom = Rooms.findOne({_id: this._id});
+		if (currentRoom.game[currentRoom.game.length - 1].players.turn == Meteor.userId()) {
+			return true;
+		}
 	}
 });

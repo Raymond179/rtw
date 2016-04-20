@@ -2,6 +2,21 @@
     <section class="game">
         <!-- If user is logged in -->
         {{#if currentUser}}
+
+            {{#if ifGameFinished}}
+                {{#if ifMaster}}
+                    <div class="message">
+                        <h3>Your combination has been guessed! Wait for opponent to start a new game</h3>
+                        <button class="ok ok-master">Ok</button>
+                    </div>
+                {{else}}
+                    <div class="message">
+                        <h3>Congratiulations! You guessed it right, now it's your turn to set a combination</h3>
+                        <button class="ok ok-mind">Start new game</button>
+                    </div>
+                {{/if}}
+            {{/if}}
+
             <div class="game-header">
                 <h2>Game with <span>{{returnOpponent}}</span></h2>
                 {{#if ifTurn}}
@@ -11,8 +26,9 @@
                 {{/if}}
 
 
-                <div class="wizard">
+                
                     {{#if ifTurn}}
+                    <div class="wizard-turn">
                         {{#if ifMaster}}
                             {{#if set.length}}
                                 <p>Review the combination</p>
@@ -22,15 +38,22 @@
                         {{else}}
                             <p>Fill in the pins to take a guess</p>
                         {{/if}}
+                    </div>
                     {{else}}
+                    <div class="wizard">
                         {{#if ifMaster}}
                             <p>Wait for opponent to set</p>
                         {{else}}
-                            <p>Wait for opponent to review your set</p>
+                            {{#if set.length}}
+                                <p>Wait for opponent to review your set</p>
+                            {{else}}
+                                <p>Wait for opponent to set a combination</p>
+                            {{/if}}
                         {{/if}}
+                    </div>
                     {{/if}}
                     
-                </div>
+                
             </div>
 
             <div class="game-body">

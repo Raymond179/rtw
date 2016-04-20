@@ -29,6 +29,7 @@
                         {{> room}}
                     {{/each}}
                 </ul>
+                <a href="/highscore" class="highscore-list"><h2 class="list-header {{#if ifActive2 '/highscore'}}lr-active{{/if}}">Highscore</h2></a>
             {{else}}
                 <ul class="no-user-list">
                     <a href="/login"><li class="{{#if lrActive '/login'}}lr-active{{/if}}">Login</li></a>
@@ -43,7 +44,17 @@
                 <span></span>
                 <span></span>
             </div>
-            <div class="overlay"></div>
+            <div class="help">
+                <span>?</span>
+            </div>
+            <div class="help-modal">
+                <span class="cross close-help"></span>
+                <h2>Help</h2>
+                <p>Forgot how to play Mastermind? Don't worry, it's all here:</p>
+                <p>The Master sets the combination code with the available 6 colors. He is allowed to set multiple pins of the same color. The Mind is going to try and guess the color combination. After each try the Master reviews the combination by setting black and white pins. The master goes by each color of the Mind's try, and compares it to his own combination. Is a color in the right spot? Set a white pin. Is the color in the combination but not in the right spot? Set a black pin. Is the color not in the Master's combination at all? Set nothing. If the Master accidentally sets a wrong pin, he can select the grey review pin and erase the mistake. When the Mind has guessed it right, the Master will set four white pins, and de game is finished. A new game will start with switched roles.</p>
+            </div>
+            <div class="overlay {{#if ifGameFinished}}overlay-active{{/if}}"></div>
+
             {{> yield}}
         </main>
     </div>

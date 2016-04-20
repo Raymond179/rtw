@@ -38,6 +38,7 @@ main {
   flex: 70%;
   -webkit-flex: 70%;
   height: 100%;
+  position: relative;
 }
 
 aside {
@@ -186,8 +187,8 @@ li {
 
 .game-header {
   background: #3B8686;
-  width: 70%;
   height: 90px;
+  width: 100%;
   position: absolute;
   text-align: center;
   color: white;
@@ -335,11 +336,24 @@ li {
 
 .wizard {
   height: 30px;
-  background: #2A3030;
+  background: rgba(255, 255, 255, 0.78);
   padding-top: 5px;
   bottom: 0;
   position: absolute;
   width: 100%;
+  color: #1C2222;
+  border-bottom: 2px solid #3B8686;
+}
+
+.wizard-turn {
+  height: 30px;
+  padding-top: 5px;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  background: #2A3030;
+  color: white;
+  border-bottom: none;
 }
 
 .board {
@@ -429,6 +443,53 @@ li {
   color: white;
 }
 
+/* HIGHSCORE */
+
+.highscore-list {
+  color: white;
+}
+
+.highscore-list h2 {
+  border-top: 1px solid white;
+  padding-top: 20px;
+  margin-top: 40px;
+}
+
+.border-bottom td {
+  border-bottom: 1px solid black;
+}
+
+.highscore-user {
+  cursor: pointer;
+  padding: 15px;
+  border-bottom: 1px solid white;
+  background: rgba(59, 134, 134, 0.23);
+  color: black;
+}
+
+.highscore-user-active {
+  background: #3B8686 !important;
+  border-top: 1px solid white;
+  color: white;
+}
+
+.highscore-users {
+  float: left;
+  width: 50%;
+}
+
+.table {
+  float: left;
+  width: 50%;
+}
+
+.table table {
+  padding: 30px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+
 .no-user-list li{
   width: 100%;
   padding: 20px;
@@ -437,6 +498,106 @@ li {
 
 .lr-active {
   background: #3B8686;
+}
+
+.yourturn {
+  position: absolute;
+  width: 4px;
+  background: white;
+  height: 100%;
+}
+
+/* Message */
+
+.message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1C2222;
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  margin: auto;
+  color: white;
+  text-align: center;
+  padding-top: 40px;
+  z-index: 9;
+  padding: 20px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.ok {
+  background: #3B8686;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 0 auto;
+  display: block;
+  min-width: 70px;
+  cursor: pointer;
+}
+
+/* HELP */
+
+.help {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding-top: 1px;
+  position: absolute;
+  right: 8px;
+  font-size: 2em;
+  top: 9px;
+  color: #1C2222;
+  cursor: pointer;
+  font-family: 'PT Sans Narrow';
+  z-index: 2;
+}
+
+.help-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1C2222;
+  width: 100%;
+  max-width: 80%;
+  height: 80%;
+  margin: auto;
+  color: white;
+  text-align: center;
+  padding-top: 40px;
+  z-index: 9;
+  padding: 20px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.help-modal-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.help-modal p {
+  text-align: left;
+}
+
+.help-modal .close-help {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.help-modal .close-help:before,
+.help-modal .close-help:after {
+  height: 25px;
 }
 
 /* CROSS */
@@ -505,7 +666,7 @@ li {
   visibility: visible;
   opacity: 0.5;
   background: #1C2222;
-  z-index: 9;
+  z-index: 8;
   transition: opacity 0.3s;
   -webkit-transition: opacity 0.3s;
 }
@@ -548,6 +709,13 @@ li {
     height: 60px;
     margin-left: 10px;
   }
+
+  /* HIGHSCORE */
+  .table,
+  .highscore-users {
+    float: none;
+    width:100%;
+  }
 }
 
 @media screen and (max-width: 40em) {
@@ -569,5 +737,13 @@ li {
 
   .hamburger {
     display: block;
+  }
+
+  .table table {
+    padding: 10px;
+  }
+
+  .message {
+    position: fixed;
   }
 }
