@@ -51,8 +51,11 @@ Bij het testen ging ik er vanuit dat de gebruiker de spelregels kende. Het volge
 - De beoordeel pins waren te klein.
 - De gebruiker kon gemakkelijk andere users vinden en een game starten.
 - De gebruiker wist tijdens een potje mastermind niet wat de status was en wat ze moesten doen.
-- De gebruiker wist niet wie er aan de beurt was.
+- De gebruiker kon niet duidelijk zien wie er aan de beurt was.
 - Wanneer een combinatie goed geraden was, kwam er geen duidelijke bevestiging.
+- De gebruiker wist niet meer welke kleur wat betekende
+
+![alt tag](https://github.com/RaymondKorrel/iot/blob/master/test/test.jpg)
 
 ## MongoDB structure
 
