@@ -61,24 +61,24 @@ Bij het testen ging ik er vanuit dat de gebruiker de spelregels kende. Het volge
 
 ###### Rooms
 
-Rooms: {
-	users: [userID, Meteor.userId()],
-	createdAt: new Date(),
-	game: [{
-		currentGame: true,
-		players: {
-		  master: Meteor.userId(),
-		  mind: userID,
-		  turn: Meteor.userId()
-		},
-		set: ['blue', 'green', 'orange', 'yellow'],
-		rows: [
-			{
-				try: ['green', 'blue', 'blue', 'yellow'],
-				review: ['black', 'black', 'white', 'nothing']
-			}
-		]
-	}]
+Rooms: {<br />
+	users: [userID, Meteor.userId()],<br />
+	createdAt: new Date(),<br />
+	game: [{<br />
+		currentGame: true,<br />
+		players: {<br />
+		  master: Meteor.userId(),<br />
+		  mind: userID,<br />
+		  turn: Meteor.userId()<br />
+		},<br />
+		set: ['blue', 'green', 'orange', 'yellow'],<br />
+		rows: [<br />
+			{<br />
+				try: ['green', 'blue', 'blue', 'yellow'],<br />
+				review: ['black', 'black', 'white', 'nothing']<br />
+			}<br />
+		]<br />
+	}]<br />
 }
 
 	
