@@ -55,7 +55,7 @@ Bij het testen ging ik er vanuit dat de gebruiker de spelregels kende. Het volge
 - Wanneer een combinatie goed geraden was, kwam er geen duidelijke bevestiging.
 - De gebruiker wist niet meer welke kleur wat betekende
 
-![alt tag](https://github.com/RaymondKorrel/iot/blob/master/test/test.jpg)
+![alt tag](https://github.com/RaymondKorrel/rtw/blob/master/test/test.jpg)
 
 ## MongoDB structure
 
